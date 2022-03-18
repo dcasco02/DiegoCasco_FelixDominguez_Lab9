@@ -520,15 +520,17 @@ public class Login extends javax.swing.JFrame {
 
     private void AdminEAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminEAActionPerformed
         // TODO add your handling code here:
-        AlumnoCRUD.setVisible(rootPaneCheckingEnabled);
-        AlumnoCRUD.pack();
+        ComboboxElegir.setModel(comboboxA);
+        ElegirCombobox.setVisible(rootPaneCheckingEnabled);
+        ElegirCombobox.pack();
         centi=3;
     }//GEN-LAST:event_AdminEAActionPerformed
 
     private void AdminEMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminEMActionPerformed
         // TODO add your handling code here:
-        MaestroCRUD.setVisible(rootPaneCheckingEnabled);
-        MaestroCRUD.pack();
+        ComboboxElegir.setModel(comboboxM);
+        ElegirCombobox.setVisible(rootPaneCheckingEnabled);
+        ElegirCombobox.pack();
         centi=4;
     }//GEN-LAST:event_AdminEMActionPerformed
 
@@ -570,7 +572,10 @@ public class Login extends javax.swing.JFrame {
             int cuenta=Integer.parseInt(CuentaAlumno.getText());
             alumnos.add(new Alumno(NombreAlumno.getText(),cuenta,CarreraAlumno.getText()));
         }else if(centi==3){
-            
+            alumnos.get(ComboboxElegir.getSelectedIndex()).setNombre(NombreAlumno.getText());
+            alumnos.get(ComboboxElegir.getSelectedIndex()).setCarrera(CarreraAlumno.getText());
+            int cuenta=Integer.parseInt(CuentaAlumno.getText());
+            alumnos.get(ComboboxElegir.getSelectedIndex()).setNumerocuenta(cuenta);
         }
         
     }//GEN-LAST:event_ConfirmarAlumnoActionPerformed
@@ -581,21 +586,52 @@ public class Login extends javax.swing.JFrame {
             int RRHH=Integer.parseInt(RRHHMaestro.getText());
             maestros.add(new Maestro(NombreMaestro.getText(),RRHH));
         }else if(centi==4){
-            
+            maestros.get(ComboboxElegir.getSelectedIndex()).setNombre(NombreMaestro.getText());
+            int cuenta=Integer.parseInt(RRHHMaestro.getText());
+            maestros.get(ComboboxElegir.getSelectedIndex()).setNumeroRRHH(cuenta);
         }
         
     }//GEN-LAST:event_ConfirmarMaestroActionPerformed
 
     private void ConfirmarElegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmarElegirActionPerformed
         // TODO add your handling code here:
-        if(centi==5){
-            alumnos.remove(ComboboxElegir.getSelectedIndex());
-        }else if(centi==6){
-            maestros.remove(ComboboxElegir.getSelectedIndex());
-        }else if(centi==7){
-            JOptionPane.showMessageDialog(null, alumnos.get(ComboboxElegir.getSelectedIndex()));
-        }else if(centi==8){
-            JOptionPane.showMessageDialog(null, maestros.get(ComboboxElegir.getSelectedIndex()));
+        switch (centi) {
+            case 3:{
+                NombreAlumno.setText(alumnos.get(ComboboxElegir.getSelectedIndex()).getNombre());
+                CarreraAlumno.setText(alumnos.get(ComboboxElegir.getSelectedIndex()).getCarrera());
+                String cuenta=String.valueOf(alumnos.get(ComboboxElegir.getSelectedIndex()).getNumerocuenta());
+                CuentaAlumno.setText(cuenta);
+                AlumnoCRUD.setVisible(rootPaneCheckingEnabled);
+                AlumnoCRUD.pack();
+                centi=3;
+                break;
+            }
+            case 4:{
+                NombreMaestro.setText(maestros.get(ComboboxElegir.getSelectedIndex()).getNombre());
+                MaestroCRUD.setVisible(rootPaneCheckingEnabled);
+                String cuenta=String.valueOf(alumnos.get(ComboboxElegir.getSelectedIndex()).getNumerocuenta());
+                CuentaAlumno.setText(cuenta);
+                MaestroCRUD.pack();
+                centi=4;
+                break;
+            }
+            case 5:{
+                alumnos.remove(ComboboxElegir.getSelectedIndex());
+                break;
+            }
+            case 6:{
+                maestros.remove(ComboboxElegir.getSelectedIndex());
+                break;
+            }    
+            case 7:{
+                JOptionPane.showMessageDialog(null, alumnos.get(ComboboxElegir.getSelectedIndex()));
+                break;
+            }    
+            case 8:{
+                JOptionPane.showMessageDialog(null, maestros.get(ComboboxElegir.getSelectedIndex()));
+                break;
+            }    
+            
         }
         
     }//GEN-LAST:event_ConfirmarElegirActionPerformed
