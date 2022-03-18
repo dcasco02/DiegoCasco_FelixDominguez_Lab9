@@ -6,6 +6,8 @@
 package diegocasco_felixdominguez_lab9;
 
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,9 +18,24 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    
+    int centi;
+    DefaultComboBoxModel<String> comboboxA=new DefaultComboBoxModel ();
+    DefaultComboBoxModel<String> comboboxM=new DefaultComboBoxModel ();
+    
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        for(int i=0;i<alumnos.size();i++){
+            String id=String.valueOf(alumnos.get(i).getNombre());
+            comboboxA.addElement(id);
+        }
+        
+        for(int i=0;i<maestros.size();i++){
+            String id=String.valueOf(maestros.get(i).getNombre());
+            comboboxM.addElement(id);
+        }
     }
 
     /**
@@ -52,8 +69,25 @@ public class Login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         AlumnoCRUD = new javax.swing.JDialog();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        NombreAlumno = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        CuentaAlumno = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        ConfirmarAlumno = new javax.swing.JButton();
+        CarreraAlumno = new javax.swing.JTextField();
         MaestroCRUD = new javax.swing.JDialog();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        NombreMaestro = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        RRHHMaestro = new javax.swing.JTextField();
+        ConfirmarMaestro = new javax.swing.JButton();
         ElegirCombobox = new javax.swing.JDialog();
+        jLabel14 = new javax.swing.JLabel();
+        ComboboxElegir = new javax.swing.JComboBox<>();
+        ConfirmarElegir = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -61,20 +95,60 @@ public class Login extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
 
         AdminCA.setText("Crear Alumno");
+        AdminCA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdminCAActionPerformed(evt);
+            }
+        });
 
         AdminCM.setText("Crear Maestro");
+        AdminCM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdminCMActionPerformed(evt);
+            }
+        });
 
         AdminEA.setText("Editar Alumno");
+        AdminEA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdminEAActionPerformed(evt);
+            }
+        });
 
         AdminEM.setText("Editar Maestro");
+        AdminEM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdminEMActionPerformed(evt);
+            }
+        });
 
         AdminLA.setText("Listar Alumnos");
+        AdminLA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdminLAActionPerformed(evt);
+            }
+        });
 
         AdminLM.setText("Listar Maestros");
+        AdminLM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdminLMActionPerformed(evt);
+            }
+        });
 
         AdminELA.setText("Eliminar Alumno");
+        AdminELA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdminELAActionPerformed(evt);
+            }
+        });
 
         AdminELM.setText("Eliminar Maestro");
+        AdminELM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdminELMActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Opciones de Administrador: ");
 
@@ -215,37 +289,166 @@ public class Login extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setText("Alumno");
+
+        jLabel8.setText("Ingrese el nombre:");
+
+        NombreAlumno.setText(" ");
+
+        jLabel9.setText("Ingrese el numero de cuenta:");
+
+        CuentaAlumno.setText(" ");
+
+        jLabel10.setText("Seleccione Carrera:");
+
+        ConfirmarAlumno.setText("Confirmar");
+        ConfirmarAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConfirmarAlumnoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout AlumnoCRUDLayout = new javax.swing.GroupLayout(AlumnoCRUD.getContentPane());
         AlumnoCRUD.getContentPane().setLayout(AlumnoCRUDLayout);
         AlumnoCRUDLayout.setHorizontalGroup(
             AlumnoCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(AlumnoCRUDLayout.createSequentialGroup()
+                .addGroup(AlumnoCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AlumnoCRUDLayout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(jLabel7))
+                    .addGroup(AlumnoCRUDLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(AlumnoCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel8)
+                            .addComponent(NombreAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(AlumnoCRUDLayout.createSequentialGroup()
+                                .addGroup(AlumnoCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(CuentaAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(38, 38, 38)
+                                .addGroup(AlumnoCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(CarreraAlumno))))))
+                .addContainerGap(35, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AlumnoCRUDLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(ConfirmarAlumno)
+                .addGap(155, 155, 155))
         );
         AlumnoCRUDLayout.setVerticalGroup(
             AlumnoCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(AlumnoCRUDLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NombreAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(AlumnoCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(AlumnoCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CuentaAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CarreraAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(ConfirmarAlumno)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel11.setText("Maestro");
+
+        jLabel12.setText("Ingrese el nombre:");
+
+        jLabel13.setText("Ingrese numero de RRHH");
+
+        ConfirmarMaestro.setText("Confirmar");
+        ConfirmarMaestro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConfirmarMaestroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout MaestroCRUDLayout = new javax.swing.GroupLayout(MaestroCRUD.getContentPane());
         MaestroCRUD.getContentPane().setLayout(MaestroCRUDLayout);
         MaestroCRUDLayout.setHorizontalGroup(
             MaestroCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(MaestroCRUDLayout.createSequentialGroup()
+                .addGroup(MaestroCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MaestroCRUDLayout.createSequentialGroup()
+                        .addGap(166, 166, 166)
+                        .addComponent(jLabel11))
+                    .addGroup(MaestroCRUDLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(MaestroCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel12)
+                            .addComponent(NombreMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13)
+                            .addGroup(MaestroCRUDLayout.createSequentialGroup()
+                                .addComponent(RRHHMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ConfirmarMaestro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         MaestroCRUDLayout.setVerticalGroup(
             MaestroCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(MaestroCRUDLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NombreMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(MaestroCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RRHHMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ConfirmarMaestro))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
+
+        jLabel14.setText("Seleccione:");
+
+        ConfirmarElegir.setText("Confirmar");
+        ConfirmarElegir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConfirmarElegirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ElegirComboboxLayout = new javax.swing.GroupLayout(ElegirCombobox.getContentPane());
         ElegirCombobox.getContentPane().setLayout(ElegirComboboxLayout);
         ElegirComboboxLayout.setHorizontalGroup(
             ElegirComboboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ElegirComboboxLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel14)
+                .addGap(93, 93, 93))
+            .addGroup(ElegirComboboxLayout.createSequentialGroup()
+                .addGroup(ElegirComboboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ElegirComboboxLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(ComboboxElegir, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ElegirComboboxLayout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(ConfirmarElegir)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         ElegirComboboxLayout.setVerticalGroup(
             ElegirComboboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(ElegirComboboxLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ComboboxElegir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(ConfirmarElegir)
+                .addGap(27, 27, 27))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -301,6 +504,102 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void AdminCAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminCAActionPerformed
+        // TODO add your handling code here:
+        AlumnoCRUD.setVisible(rootPaneCheckingEnabled);
+        AlumnoCRUD.pack();
+        centi=1;
+    }//GEN-LAST:event_AdminCAActionPerformed
+
+    private void AdminCMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminCMActionPerformed
+        // TODO add your handling code here:
+        MaestroCRUD.setVisible(rootPaneCheckingEnabled);
+        MaestroCRUD.pack();
+        centi=2;
+    }//GEN-LAST:event_AdminCMActionPerformed
+
+    private void AdminEAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminEAActionPerformed
+        // TODO add your handling code here:
+        AlumnoCRUD.setVisible(rootPaneCheckingEnabled);
+        AlumnoCRUD.pack();
+        centi=3;
+    }//GEN-LAST:event_AdminEAActionPerformed
+
+    private void AdminEMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminEMActionPerformed
+        // TODO add your handling code here:
+        MaestroCRUD.setVisible(rootPaneCheckingEnabled);
+        MaestroCRUD.pack();
+        centi=4;
+    }//GEN-LAST:event_AdminEMActionPerformed
+
+    private void AdminLAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminLAActionPerformed
+        // TODO add your handling code here:
+        ComboboxElegir.setModel(comboboxA);
+        ElegirCombobox.setVisible(rootPaneCheckingEnabled);
+        ElegirCombobox.pack();
+        centi=5;
+    }//GEN-LAST:event_AdminLAActionPerformed
+
+    private void AdminLMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminLMActionPerformed
+        // TODO add your handling code here:
+        ComboboxElegir.setModel(comboboxM);
+        ElegirCombobox.setVisible(rootPaneCheckingEnabled);
+        ElegirCombobox.pack();
+        centi=6;
+    }//GEN-LAST:event_AdminLMActionPerformed
+
+    private void AdminELAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminELAActionPerformed
+        // TODO add your handling code here:
+        ComboboxElegir.setModel(comboboxA);
+        ElegirCombobox.setVisible(rootPaneCheckingEnabled);
+        ElegirCombobox.pack();
+        centi=7;
+    }//GEN-LAST:event_AdminELAActionPerformed
+
+    private void AdminELMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminELMActionPerformed
+        // TODO add your handling code here:
+        ComboboxElegir.setModel(comboboxM);
+        ElegirCombobox.setVisible(rootPaneCheckingEnabled);
+        ElegirCombobox.pack();
+        centi=8;
+    }//GEN-LAST:event_AdminELMActionPerformed
+
+    private void ConfirmarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmarAlumnoActionPerformed
+        // TODO add your handling code here:
+        if(centi==1){
+            int cuenta=Integer.parseInt(CuentaAlumno.getText());
+            alumnos.add(new Alumno(NombreAlumno.getText(),cuenta,CarreraAlumno.getText()));
+        }else if(centi==3){
+            
+        }
+        
+    }//GEN-LAST:event_ConfirmarAlumnoActionPerformed
+
+    private void ConfirmarMaestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmarMaestroActionPerformed
+        // TODO add your handling code here:
+        if(centi==2){
+            int RRHH=Integer.parseInt(RRHHMaestro.getText());
+            maestros.add(new Maestro(NombreMaestro.getText(),RRHH));
+        }else if(centi==4){
+            
+        }
+        
+    }//GEN-LAST:event_ConfirmarMaestroActionPerformed
+
+    private void ConfirmarElegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmarElegirActionPerformed
+        // TODO add your handling code here:
+        if(centi==5){
+            alumnos.remove(ComboboxElegir.getSelectedIndex());
+        }else if(centi==6){
+            maestros.remove(ComboboxElegir.getSelectedIndex());
+        }else if(centi==7){
+            JOptionPane.showMessageDialog(null, alumnos.get(ComboboxElegir.getSelectedIndex()));
+        }else if(centi==8){
+            JOptionPane.showMessageDialog(null, maestros.get(ComboboxElegir.getSelectedIndex()));
+        }
+        
+    }//GEN-LAST:event_ConfirmarElegirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -347,6 +646,12 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton AdminLA;
     private javax.swing.JButton AdminLM;
     private javax.swing.JDialog AlumnoCRUD;
+    private javax.swing.JTextField CarreraAlumno;
+    private javax.swing.JComboBox<String> ComboboxElegir;
+    private javax.swing.JButton ConfirmarAlumno;
+    private javax.swing.JButton ConfirmarElegir;
+    private javax.swing.JButton ConfirmarMaestro;
+    private javax.swing.JTextField CuentaAlumno;
     private javax.swing.JDialog ElegirCombobox;
     private javax.swing.JButton JB_registar;
     private javax.swing.JTextField JT_ConfirarContrasena;
@@ -354,18 +659,31 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField JT_contrasena;
     private javax.swing.JTextField JT_usuario;
     private javax.swing.JDialog MaestroCRUD;
+    private javax.swing.JTextField NombreAlumno;
+    private javax.swing.JTextField NombreMaestro;
+    private javax.swing.JTextField RRHHMaestro;
     private javax.swing.JFrame Registro;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-    ArrayList<Usuarios> usuarios;
+    ArrayList<Usuarios> usuarios= new ArrayList();
+    ArrayList<Alumno> alumnos= new ArrayList();
+    ArrayList<Maestro> maestros= new ArrayList();
 }

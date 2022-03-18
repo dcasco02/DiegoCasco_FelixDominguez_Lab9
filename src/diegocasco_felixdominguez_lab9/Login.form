@@ -71,41 +71,65 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Crear Alumno"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AdminCAActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="AdminCM">
           <Properties>
             <Property name="text" type="java.lang.String" value="Crear Maestro"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AdminCMActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="AdminEA">
           <Properties>
             <Property name="text" type="java.lang.String" value="Editar Alumno"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AdminEAActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="AdminEM">
           <Properties>
             <Property name="text" type="java.lang.String" value="Editar Maestro"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AdminEMActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="AdminLA">
           <Properties>
             <Property name="text" type="java.lang.String" value="Listar Alumnos"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AdminLAActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="AdminLM">
           <Properties>
             <Property name="text" type="java.lang.String" value="Listar Maestros"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AdminLMActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="AdminELA">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar Alumno"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AdminELAActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="AdminELM">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar Maestro"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AdminELMActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
@@ -259,45 +283,254 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
+                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                              <Component id="NombreAlumno" min="-2" pref="338" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="CuentaAlumno" alignment="0" min="-2" pref="174" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                      <Component id="CarreraAlumno" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="35" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="ConfirmarAlumno" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="NombreAlumno" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="CuentaAlumno" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="CarreraAlumno" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="ConfirmarAlumno" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabel7">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Alumno"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel8">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ingrese el nombre:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="NombreAlumno">
+          <Properties>
+            <Property name="text" type="java.lang.String" value=" "/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel9">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ingrese el numero de cuenta:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="CuentaAlumno">
+          <Properties>
+            <Property name="text" type="java.lang.String" value=" "/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel10">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Seleccione Carrera:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="ConfirmarAlumno">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Confirmar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConfirmarAlumnoActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="CarreraAlumno">
+        </Component>
+      </SubComponents>
     </Container>
     <Container class="javax.swing.JDialog" name="MaestroCRUD">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
+                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                              <Component id="NombreMaestro" min="-2" pref="349" max="-2" attributes="0"/>
+                              <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="RRHHMaestro" min="-2" pref="194" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="ConfirmarMaestro" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="NombreMaestro" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="RRHHMaestro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ConfirmarMaestro" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="41" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabel11">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Maestro"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel12">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ingrese el nombre:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="NombreMaestro">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel13">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ingrese numero de RRHH"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="RRHHMaestro">
+        </Component>
+        <Component class="javax.swing.JButton" name="ConfirmarMaestro">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Confirmar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConfirmarMaestroActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
     </Container>
     <Container class="javax.swing.JDialog" name="ElegirCombobox">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                          <Component id="ComboboxElegir" min="-2" pref="206" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                          <Component id="ConfirmarElegir" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="18" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="ComboboxElegir" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <Component id="ConfirmarElegir" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabel14">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Seleccione:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="ComboboxElegir">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="ConfirmarElegir">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Confirmar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConfirmarElegirActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
     </Container>
   </NonVisualComponents>
   <Properties>
