@@ -30,13 +30,14 @@ public class Login extends javax.swing.JFrame {
 
         Admin = new javax.swing.JFrame();
         AdminCA = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        AdminCM = new javax.swing.JButton();
+        AdminEA = new javax.swing.JButton();
+        AdminEM = new javax.swing.JButton();
+        AdminLA = new javax.swing.JButton();
+        AdminLM = new javax.swing.JButton();
+        AdminELA = new javax.swing.JButton();
+        AdminELM = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         Registro = new javax.swing.JFrame();
         jPanel1 = new javax.swing.JPanel();
         JT_Nombre = new javax.swing.JTextField();
@@ -48,6 +49,9 @@ public class Login extends javax.swing.JFrame {
         JB_registar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        AlumnoCRUD = new javax.swing.JDialog();
+        MaestroCRUD = new javax.swing.JDialog();
+        ElegirCombobox = new javax.swing.JDialog();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -55,30 +59,22 @@ public class Login extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
 
         AdminCA.setText("Crear Alumno");
-        AdminCA.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AdminCAActionPerformed(evt);
-            }
-        });
 
-        jButton5.setText("Crear Maestro");
+        AdminCM.setText("Crear Maestro");
 
-        jButton6.setText("Editar Alumno");
+        AdminEA.setText("Editar Alumno");
 
-        jButton7.setText("Editar Maestro");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
+        AdminEM.setText("Editar Maestro");
 
-        jButton8.setText("Listar Alumnos");
+        AdminLA.setText("Listar Alumnos");
 
-        jButton9.setText("Listar Maestros");
+        AdminLM.setText("Listar Maestros");
 
-        jButton10.setText("Eliminar Alumno");
+        AdminELA.setText("Eliminar Alumno");
 
-        jButton11.setText("Eliminar Maestro");
+        AdminELM.setText("Eliminar Maestro");
+
+        jLabel6.setText("Opciones de Administrador: ");
 
         javax.swing.GroupLayout AdminLayout = new javax.swing.GroupLayout(Admin.getContentPane());
         Admin.getContentPane().setLayout(AdminLayout);
@@ -87,44 +83,46 @@ public class Login extends javax.swing.JFrame {
             .addGroup(AdminLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6)
+                    .addComponent(AdminELA)
                     .addGroup(AdminLayout.createSequentialGroup()
                         .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(AdminCA)
-                                .addComponent(jButton10))
-                            .addGroup(AdminLayout.createSequentialGroup()
-                                .addComponent(jButton8)
-                                .addGap(12, 12, 12)))
-                        .addGap(32, 32, 32)
+                            .addComponent(AdminEA)
+                            .addComponent(AdminLA, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(44, 44, 44)
                         .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton11)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton7)
-                                .addComponent(jButton9)))))
-                .addContainerGap(99, Short.MAX_VALUE))
+                            .addComponent(AdminLM)
+                            .addComponent(AdminELM)
+                            .addComponent(AdminCM, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AdminEM)))
+                    .addGroup(AdminLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AdminCA)
+                            .addComponent(jLabel6))))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         AdminLayout.setVerticalGroup(
             AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AdminLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AdminCA)
-                    .addComponent(jButton5))
+                .addGap(36, 36, 36)
+                .addComponent(jLabel6)
                 .addGap(35, 35, 35)
                 .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7))
-                .addGap(27, 27, 27)
+                    .addComponent(AdminCA)
+                    .addComponent(AdminCM))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9))
-                .addGap(37, 37, 37)
+                    .addComponent(AdminEA)
+                    .addComponent(AdminEM))
+                .addGap(29, 29, 29)
                 .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10)
-                    .addComponent(jButton11))
-                .addContainerGap(67, Short.MAX_VALUE))
+                    .addComponent(AdminLA)
+                    .addComponent(AdminLM))
+                .addGap(31, 31, 31)
+                .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AdminELA)
+                    .addComponent(AdminELM))
+                .addGap(31, 31, 31))
         );
 
         JT_Nombre.setText("jTextField2");
@@ -215,6 +213,39 @@ public class Login extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        javax.swing.GroupLayout AlumnoCRUDLayout = new javax.swing.GroupLayout(AlumnoCRUD.getContentPane());
+        AlumnoCRUD.getContentPane().setLayout(AlumnoCRUDLayout);
+        AlumnoCRUDLayout.setHorizontalGroup(
+            AlumnoCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        AlumnoCRUDLayout.setVerticalGroup(
+            AlumnoCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout MaestroCRUDLayout = new javax.swing.GroupLayout(MaestroCRUD.getContentPane());
+        MaestroCRUD.getContentPane().setLayout(MaestroCRUDLayout);
+        MaestroCRUDLayout.setHorizontalGroup(
+            MaestroCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        MaestroCRUDLayout.setVerticalGroup(
+            MaestroCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout ElegirComboboxLayout = new javax.swing.GroupLayout(ElegirCombobox.getContentPane());
+        ElegirCombobox.getContentPane().setLayout(ElegirComboboxLayout);
+        ElegirComboboxLayout.setHorizontalGroup(
+            ElegirComboboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        ElegirComboboxLayout.setVerticalGroup(
+            ElegirComboboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTextField1.setText("jTextField1");
@@ -268,14 +299,6 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void AdminCAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminCAActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AdminCAActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -314,26 +337,30 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFrame Admin;
     private javax.swing.JButton AdminCA;
+    private javax.swing.JButton AdminCM;
+    private javax.swing.JButton AdminEA;
+    private javax.swing.JButton AdminELA;
+    private javax.swing.JButton AdminELM;
+    private javax.swing.JButton AdminEM;
+    private javax.swing.JButton AdminLA;
+    private javax.swing.JButton AdminLM;
+    private javax.swing.JDialog AlumnoCRUD;
+    private javax.swing.JDialog ElegirCombobox;
     private javax.swing.JButton JB_registar;
     private javax.swing.JTextField JT_ConfirarContrasena;
     private javax.swing.JTextField JT_Nombre;
     private javax.swing.JTextField JT_contrasena;
     private javax.swing.JTextField JT_usuario;
+    private javax.swing.JDialog MaestroCRUD;
     private javax.swing.JFrame Registro;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
