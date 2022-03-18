@@ -29,7 +29,14 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         Admin = new javax.swing.JFrame();
-        jButton3 = new javax.swing.JButton();
+        AdminCA = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
         Registro = new javax.swing.JFrame();
         jPanel1 = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
@@ -47,23 +54,77 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
 
-        jButton3.setText("jButton3");
+        AdminCA.setText("Crear Alumno");
+        AdminCA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdminCAActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Crear Maestro");
+
+        jButton6.setText("Editar Alumno");
+
+        jButton7.setText("Editar Maestro");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jButton8.setText("Listar Alumnos");
+
+        jButton9.setText("Listar Maestros");
+
+        jButton10.setText("Eliminar Alumno");
+
+        jButton11.setText("Eliminar Maestro");
 
         javax.swing.GroupLayout AdminLayout = new javax.swing.GroupLayout(Admin.getContentPane());
         Admin.getContentPane().setLayout(AdminLayout);
         AdminLayout.setHorizontalGroup(
             AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AdminLayout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addComponent(jButton3)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton6)
+                    .addGroup(AdminLayout.createSequentialGroup()
+                        .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(AdminCA)
+                                .addComponent(jButton10))
+                            .addGroup(AdminLayout.createSequentialGroup()
+                                .addComponent(jButton8)
+                                .addGap(12, 12, 12)))
+                        .addGap(32, 32, 32)
+                        .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton11)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jButton7)
+                                .addComponent(jButton9)))))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         AdminLayout.setVerticalGroup(
             AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AdminLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jButton3)
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AdminCA)
+                    .addComponent(jButton5))
+                .addGap(35, 35, 35)
+                .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton6)
+                    .addComponent(jButton7))
+                .addGap(27, 27, 27)
+                .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton8)
+                    .addComponent(jButton9))
+                .addGap(37, 37, 37)
+                .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton10)
+                    .addComponent(jButton11))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         jTextField2.setText("jTextField2");
@@ -207,6 +268,14 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void AdminCAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminCAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AdminCAActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -244,11 +313,18 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFrame Admin;
+    private javax.swing.JButton AdminCA;
     private javax.swing.JFrame Registro;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
