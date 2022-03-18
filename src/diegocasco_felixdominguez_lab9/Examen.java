@@ -11,5 +11,5 @@ package diegocasco_felixdominguez_lab9;
  */
 public class Examen {
     private String nombre;
-    
+    private String apellido;
 }
