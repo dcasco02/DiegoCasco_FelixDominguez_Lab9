@@ -10,5 +10,6 @@ package diegocasco_felixdominguez_lab9;
  * @author dcasc
  */
 public class Examen {
+    private String nombre;
     
 }
