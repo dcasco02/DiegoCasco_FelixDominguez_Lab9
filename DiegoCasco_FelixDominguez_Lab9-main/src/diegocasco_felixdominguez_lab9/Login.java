@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 
 /**
  *
@@ -23,6 +24,8 @@ public class Login extends javax.swing.JFrame {
     int centi;
     DefaultComboBoxModel<String> comboboxA=new DefaultComboBoxModel ();
     DefaultComboBoxModel<String> comboboxM=new DefaultComboBoxModel ();
+    DefaultComboBoxModel<String> comboboxC=new DefaultComboBoxModel ();
+    DefaultComboBoxModel<String> comboboxE=new DefaultComboBoxModel ();
     
     public Login() {
         initComponents();
@@ -37,9 +40,22 @@ public class Login extends javax.swing.JFrame {
             String id=String.valueOf(maestros.get(i).getNombre());
             comboboxM.addElement(id);
         }
+        clases.add(new Clase("Mate"));
         
-        Admin.setVisible(true);
-        Admin.pack();
+        for(int i=0;i<clases.size();i++){
+            String id=String.valueOf(clases.get(i).getNombre());
+            comboboxC.addElement(id);
+        }
+        for(int i=0;i<examenes.size();i++){
+            String id=String.valueOf(examenes.get(i).getIDExamen());
+            comboboxC.addElement(id);
+        }
+        
+        //Admin.setVisible(true);
+        //Admin.pack();
+        CargarAlumno();
+        CargarMaestro();
+        
     }
 
     /**
@@ -61,6 +77,11 @@ public class Login extends javax.swing.JFrame {
         AdminELA = new javax.swing.JButton();
         AdminELM = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        CrearExamen = new javax.swing.JButton();
+        CrearClase = new javax.swing.JButton();
+        CrearPregunta = new javax.swing.JButton();
+        VerClase = new javax.swing.JButton();
+        VerCalificaciones = new javax.swing.JButton();
         Registro = new javax.swing.JFrame();
         jPanel1 = new javax.swing.JPanel();
         JT_Nombre = new javax.swing.JTextField();
@@ -92,11 +113,32 @@ public class Login extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         ComboboxElegir = new javax.swing.JComboBox<>();
         ConfirmarElegir = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        ExamenCrear = new javax.swing.JDialog();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        NumPreguntas = new javax.swing.JSpinner();
+        ECBoton = new javax.swing.JButton();
+        ClaseCombobox = new javax.swing.JComboBox<>();
+        jLabel24 = new javax.swing.JLabel();
+        IDExamen = new javax.swing.JTextField();
+        PreguntaCrear = new javax.swing.JDialog();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        PreguntaTexto = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        Verdadero = new javax.swing.JCheckBox();
+        Falso = new javax.swing.JCheckBox();
+        BotonCP = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
+        ExamenPregunta = new javax.swing.JComboBox<>();
+        NombreCuenta = new javax.swing.JTextField();
+        RegistrarBoton = new javax.swing.JButton();
+        IniciarBoton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        Contraseña = new javax.swing.JPasswordField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
         AdminCA.setText("Crear Alumno");
         AdminCA.addActionListener(new java.awt.event.ActionListener() {
@@ -156,6 +198,41 @@ public class Login extends javax.swing.JFrame {
 
         jLabel6.setText("Opciones de Administrador: ");
 
+        CrearExamen.setText("Crear Examen");
+        CrearExamen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearExamenActionPerformed(evt);
+            }
+        });
+
+        CrearClase.setText("Crear Clase");
+        CrearClase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearClaseActionPerformed(evt);
+            }
+        });
+
+        CrearPregunta.setText("Crear Pregunta");
+        CrearPregunta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearPreguntaActionPerformed(evt);
+            }
+        });
+
+        VerClase.setText("Ver Clases");
+        VerClase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerClaseActionPerformed(evt);
+            }
+        });
+
+        VerCalificaciones.setText("Ver Calificaciones");
+        VerCalificaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerCalificacionesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout AdminLayout = new javax.swing.GroupLayout(Admin.getContentPane());
         Admin.getContentPane().setLayout(AdminLayout);
         AdminLayout.setHorizontalGroup(
@@ -163,34 +240,57 @@ public class Login extends javax.swing.JFrame {
             .addGroup(AdminLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
                     .addComponent(AdminELA)
                     .addGroup(AdminLayout.createSequentialGroup()
-                        .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(AdminEA)
-                            .addComponent(AdminLA, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(44, 44, 44)
                         .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminLayout.createSequentialGroup()
+                                    .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(AdminEA)
+                                        .addComponent(AdminCA))
+                                    .addGap(46, 46, 46))
+                                .addGroup(AdminLayout.createSequentialGroup()
+                                    .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(AdminLA)
+                                        .addComponent(CrearExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(44, 44, 44)))
+                            .addGroup(AdminLayout.createSequentialGroup()
+                                .addComponent(VerCalificaciones)
+                                .addGap(28, 28, 28))
+                            .addComponent(CrearClase))
+                        .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(VerClase)
                             .addComponent(AdminLM)
                             .addComponent(AdminELM)
                             .addComponent(AdminCM, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AdminEM)))
-                    .addGroup(AdminLayout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AdminCA)
-                            .addComponent(jLabel6))))
-                .addContainerGap(51, Short.MAX_VALUE))
+                            .addComponent(AdminEM)
+                            .addComponent(CrearPregunta))))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         AdminLayout.setVerticalGroup(
             AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AdminLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(23, 23, 23)
                 .addComponent(jLabel6)
-                .addGap(35, 35, 35)
+                .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                        .addComponent(CrearPregunta))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(VerCalificaciones)
+                        .addGap(26, 26, 26)
+                        .addComponent(CrearExamen)))
+                .addGap(29, 29, 29)
+                .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CrearClase)
+                    .addComponent(VerClase))
+                .addGap(27, 27, 27)
                 .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AdminCA)
                     .addComponent(AdminCM))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addGroup(AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AdminEA)
                     .addComponent(AdminEM))
@@ -451,53 +551,207 @@ public class Login extends javax.swing.JFrame {
                 .addGap(27, 27, 27))
         );
 
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel17.setText("Crear Examen:");
+
+        jLabel18.setText("IDClase");
+
+        jLabel19.setText("Numero de Preguntas:");
+
+        NumPreguntas.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        ECBoton.setText("Crear");
+        ECBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ECBotonActionPerformed(evt);
+            }
+        });
+
+        jLabel24.setText("IDExamen");
+
+        javax.swing.GroupLayout ExamenCrearLayout = new javax.swing.GroupLayout(ExamenCrear.getContentPane());
+        ExamenCrear.getContentPane().setLayout(ExamenCrearLayout);
+        ExamenCrearLayout.setHorizontalGroup(
+            ExamenCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ExamenCrearLayout.createSequentialGroup()
+                .addGroup(ExamenCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ExamenCrearLayout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(jLabel17))
+                    .addGroup(ExamenCrearLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(ExamenCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel19)
+                            .addGroup(ExamenCrearLayout.createSequentialGroup()
+                                .addGroup(ExamenCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(NumPreguntas)
+                                    .addComponent(jLabel24)
+                                    .addComponent(IDExamen, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+                                .addGap(27, 27, 27)
+                                .addGroup(ExamenCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel18)
+                                    .addGroup(ExamenCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(ClaseCombobox, 0, 111, Short.MAX_VALUE)
+                                        .addComponent(ECBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
+        ExamenCrearLayout.setVerticalGroup(
+            ExamenCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ExamenCrearLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel17)
+                .addGap(18, 18, 18)
+                .addGroup(ExamenCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ExamenCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ClaseCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(IDExamen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ExamenCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NumPreguntas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ECBoton))
+                .addContainerGap(55, Short.MAX_VALUE))
+        );
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel20.setText("Crear Pegunta:");
+
+        jLabel21.setText("Pregunta:");
+
+        jLabel22.setText("Respuesta:");
+
+        Verdadero.setText("Verdadero");
+
+        Falso.setText("Falso");
+
+        BotonCP.setText("Crear");
+        BotonCP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonCPActionPerformed(evt);
+            }
+        });
+
+        jLabel23.setText("Examen:");
+
+        javax.swing.GroupLayout PreguntaCrearLayout = new javax.swing.GroupLayout(PreguntaCrear.getContentPane());
+        PreguntaCrear.getContentPane().setLayout(PreguntaCrearLayout);
+        PreguntaCrearLayout.setHorizontalGroup(
+            PreguntaCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PreguntaCrearLayout.createSequentialGroup()
+                .addGroup(PreguntaCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PreguntaCrearLayout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(jLabel20))
+                    .addGroup(PreguntaCrearLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(PreguntaCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel21)
+                            .addGroup(PreguntaCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(PreguntaTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PreguntaCrearLayout.createSequentialGroup()
+                                    .addComponent(Verdadero, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addGroup(PreguntaCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(BotonCP, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Falso)))
+                                .addGroup(PreguntaCrearLayout.createSequentialGroup()
+                                    .addComponent(jLabel22)
+                                    .addGap(128, 128, 128)
+                                    .addGroup(PreguntaCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel23)
+                                        .addComponent(ExamenPregunta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+        PreguntaCrearLayout.setVerticalGroup(
+            PreguntaCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PreguntaCrearLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel20)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PreguntaTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addGroup(PreguntaCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(jLabel23))
+                .addGap(1, 1, 1)
+                .addGroup(PreguntaCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Verdadero)
+                    .addComponent(Falso)
+                    .addComponent(ExamenPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(BotonCP)
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField1.setText("jTextField1");
+        RegistrarBoton.setText("Registrar");
+        RegistrarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrarBotonActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("jButton1");
+        IniciarBoton.setText("Iniciar");
+        IniciarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IniciarBotonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("jButton2");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("Iniciar Sesion");
 
-        jLabel1.setText("Usuario");
+        jLabel15.setText("Nombre de Cuenta:");
 
-        jPasswordField1.setText("jPasswordField1");
+        jLabel16.setText("Contraseña:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(IniciarBoton)
+                .addGap(75, 75, 75)
+                .addComponent(RegistrarBoton)
+                .addGap(21, 21, 21))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(143, 143, 143)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(NombreCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel16))
+                .addGap(0, 83, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel1)
+                .addGap(42, 42, 42)
+                .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addComponent(NombreCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(RegistrarBoton)
+                    .addComponent(IniciarBoton))
                 .addGap(29, 29, 29))
         );
 
@@ -585,6 +839,7 @@ public class Login extends javax.swing.JFrame {
             alumnos.get(ComboboxElegir.getSelectedIndex()).setCarrera(CarreraAlumno.getText());
             int cuenta=Integer.parseInt(CuentaAlumno.getText());
             alumnos.get(ComboboxElegir.getSelectedIndex()).setNumerocuenta(cuenta);
+            EditarAlumno();
         }
         
     }//GEN-LAST:event_ConfirmarAlumnoActionPerformed
@@ -594,11 +849,14 @@ public class Login extends javax.swing.JFrame {
         if(centi==2){
             int RRHH=Integer.parseInt(RRHHMaestro.getText());
             maestros.add(new Maestro(NombreMaestro.getText(),RRHH));
-            
+            AgregarMaestro(maestros.size()-1);
         }else if(centi==4){
+            String nombre=maestros.get(ComboboxElegir.getSelectedIndex()).getNombre();
+            int RRHH=maestros.get(ComboboxElegir.getSelectedIndex()).getNumeroRRHH();
             maestros.get(ComboboxElegir.getSelectedIndex()).setNombre(NombreMaestro.getText());
             int cuenta=Integer.parseInt(RRHHMaestro.getText());
             maestros.get(ComboboxElegir.getSelectedIndex()).setNumeroRRHH(cuenta);
+            EditarMaestro(nombre,RRHH);
         }
         
     }//GEN-LAST:event_ConfirmarMaestroActionPerformed
@@ -636,13 +894,13 @@ public class Login extends javax.swing.JFrame {
                 break;
             }    
             case 7:{
+                EliminarAlumno();
                 alumnos.remove(ComboboxElegir.getSelectedIndex());
-                
                 break;
             }    
             case 8:{
+                EliminarMaestro();
                 maestros.remove(ComboboxElegir.getSelectedIndex());
-                
                 break;
             }    
             
@@ -650,11 +908,74 @@ public class Login extends javax.swing.JFrame {
         refresh();
     }//GEN-LAST:event_ConfirmarElegirActionPerformed
 
+    private void IniciarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarBotonActionPerformed
+        // TODO add your handling code here:
+        if(NombreCuenta.getText().equals("Admin")&Contraseña.getText().equals("1234")){
+            Admin.setVisible(true);
+            Admin.pack();
+        }else if(NombreCuenta.getText().equals("Maestro")&Contraseña.getText().equals("1111")){
+            
+        }else if(NombreCuenta.getText().equals("Alumno")&Contraseña.getText().equals("0000")){
+            
+        }
+    }//GEN-LAST:event_IniciarBotonActionPerformed
+
+    private void RegistrarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarBotonActionPerformed
+        // TODO add your handling code here:
+        Registro.setVisible(true);
+        Registro.pack();
+    }//GEN-LAST:event_RegistrarBotonActionPerformed
+
+    private void VerCalificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerCalificacionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VerCalificacionesActionPerformed
+
+    private void CrearPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearPreguntaActionPerformed
+        // TODO add your handling code here:
+        refresh();
+        ExamenPregunta.setModel(comboboxE);
+        PreguntaCrear.setVisible(true);
+        PreguntaCrear.pack();
+    }//GEN-LAST:event_CrearPreguntaActionPerformed
+
+    private void VerClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerClaseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VerClaseActionPerformed
+
+    private void CrearExamenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearExamenActionPerformed
+        // TODO add your handling code here:
+        refresh();
+        ClaseCombobox.setModel(comboboxC);
+        ExamenCrear.setVisible(true);
+        ExamenCrear.pack();
+    }//GEN-LAST:event_CrearExamenActionPerformed
+
+    private void CrearClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearClaseActionPerformed
+        // TODO add your handling code here:
+        String clase=JOptionPane.showInputDialog(null, "Ingrese el nombre de la clase:");
+        clases.add(new Clase(clase));
+    }//GEN-LAST:event_CrearClaseActionPerformed
+
+    private void ECBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ECBotonActionPerformed
+        // TODO add your handling code here:
+        int ad=(Integer) NumPreguntas.getValue();
+        examenes.add(new Examen(IDExamen.getText(),ad,clases.get(ClaseCombobox.getSelectedIndex())));
+    }//GEN-LAST:event_ECBotonActionPerformed
+
+    private void BotonCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCPActionPerformed
+        // TODO add your handling code here:
+        if(Verdadero.isSelected()){
+            preguntas.add(new Pregunta(PreguntaTexto.getText(),true,examenes.get(ExamenPregunta.getSelectedIndex())));
+        }else if(Falso.isSelected()){
+            
+        }
+    }//GEN-LAST:event_BotonCPActionPerformed
+
     public void refresh(){
         comboboxM.removeAllElements();
         comboboxA.removeAllElements();
-        
-        
+        comboboxE.removeAllElements();
+        comboboxC.removeAllElements();
         
         for(int i=0;i<maestros.size();i++){
             comboboxM.addElement(maestros.get(i).getNombre());
@@ -662,10 +983,16 @@ public class Login extends javax.swing.JFrame {
         for(int i=0;i<alumnos.size();i++){
             comboboxA.addElement(alumnos.get(i).getNombre());
         }   
+        for(int i=0;i<examenes.size();i++){
+            comboboxE.addElement(examenes.get(i).getIDExamen());
+        }
+        for(int i=0;i<clases.size();i++){
+            comboboxC.addElement(clases.get(i).getNombre());
+        }
     }
     
     public void AgregarAlumno(int e){
-        Dba db = new Dba("./base1.mdb");
+        Dba db = new Dba("./Lab9BaseDatos.accdb");
         db.conectar();
         try {
             db.query.execute("INSERT INTO Alumno"
@@ -680,7 +1007,7 @@ public class Login extends javax.swing.JFrame {
     }
     
     public void AgregarMaestro(int e){
-        Dba db = new Dba("./base1.mdb");
+        Dba db = new Dba("./Lab9BaseDatos.accdb");
         db.conectar();
         try {
             db.query.execute("INSERT INTO Maestro"
@@ -692,6 +1019,85 @@ public class Login extends javax.swing.JFrame {
         }
         db.desconectar();
 
+    }
+    
+    public void CargarAlumno(){
+        Dba db = new Dba("./Lab9BaseDatos.accdb");
+        db.conectar();
+        try {
+            db.query.execute("select Nombre,Cuenta,Carrera from Alumno");
+            ResultSet rs = db.query.getResultSet();           
+            while (rs.next()) {
+                alumnos.add(new Alumno(rs.getString(1),rs.getInt(2),rs.getString(3)));
+            }            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        db.desconectar();
+
+    }
+    
+    public void CargarMaestro(){
+        Dba db = new Dba("./Lab9BaseDatos.accdb");
+        db.conectar();
+        try {
+            db.query.execute("select Nombre,RRHH from Maestro");
+            ResultSet rs = db.query.getResultSet();           
+            while (rs.next()) {
+                maestros.add(new Maestro(rs.getString(1),rs.getInt(2)));
+            }            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        db.desconectar();
+
+    }
+    
+    public void EliminarMaestro(){
+        Dba db = new Dba("./Lab9BaseDatos.accdb");
+        db.conectar();
+        try {
+            db.query.execute("delete from Maestro where RRHH="+maestros.get(ComboboxElegir.getSelectedIndex()).getNumeroRRHH());        
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        db.desconectar();
+    }
+    
+    public void EliminarAlumno(){
+        Dba db = new Dba("./Lab9BaseDatos.accdb");
+        db.conectar();
+        try {
+            db.query.execute("delete from Alumno where Cuenta="+alumnos.get(ComboboxElegir.getSelectedIndex()).getNumerocuenta());        
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        db.desconectar();
+    }
+    
+     public void EditarAlumno(){
+        Dba db = new Dba("./Lab9BaseDatos.accdb");
+        db.conectar();
+        try {
+            db.query.execute("update Alumno set Nombre="+alumnos.get(ComboboxElegir.getSelectedIndex()).getNombre());
+            db.query.execute("update Alumno set Cuenta="+alumnos.get(ComboboxElegir.getSelectedIndex()).getNumerocuenta());  
+            db.query.execute("update Alumno set Carrera="+alumnos.get(ComboboxElegir.getSelectedIndex()).getCarrera());
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        db.desconectar();
+    }
+     
+      public void EditarMaestro(String nombre,int RRHH){
+        Dba db = new Dba("./Lab9BaseDatos.accdb");
+        db.conectar();
+        try {
+            db.query.execute("update Maestro set Nombre="+nombre+" where Nombre="+maestros.get(ComboboxElegir.getSelectedIndex()).getNombre());
+            db.query.execute("update Maestro set RRHH="+RRHH+" where RRHH="+maestros.get(ComboboxElegir.getSelectedIndex()).getNumeroRRHH());        
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        db.desconectar();
     }
     
     /**
@@ -741,13 +1147,25 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton AdminLA;
     private javax.swing.JButton AdminLM;
     private javax.swing.JDialog AlumnoCRUD;
+    private javax.swing.JButton BotonCP;
     private javax.swing.JTextField CarreraAlumno;
+    private javax.swing.JComboBox<String> ClaseCombobox;
     private javax.swing.JComboBox<String> ComboboxElegir;
     private javax.swing.JButton ConfirmarAlumno;
     private javax.swing.JButton ConfirmarElegir;
     private javax.swing.JButton ConfirmarMaestro;
+    private javax.swing.JPasswordField Contraseña;
+    private javax.swing.JButton CrearClase;
+    private javax.swing.JButton CrearExamen;
+    private javax.swing.JButton CrearPregunta;
     private javax.swing.JTextField CuentaAlumno;
+    private javax.swing.JButton ECBoton;
     private javax.swing.JDialog ElegirCombobox;
+    private javax.swing.JDialog ExamenCrear;
+    private javax.swing.JComboBox<String> ExamenPregunta;
+    private javax.swing.JCheckBox Falso;
+    private javax.swing.JTextField IDExamen;
+    private javax.swing.JButton IniciarBoton;
     private javax.swing.JButton JB_registar;
     private javax.swing.JTextField JT_ConfirarContrasena;
     private javax.swing.JTextField JT_Nombre;
@@ -755,18 +1173,34 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField JT_usuario;
     private javax.swing.JDialog MaestroCRUD;
     private javax.swing.JTextField NombreAlumno;
+    private javax.swing.JTextField NombreCuenta;
     private javax.swing.JTextField NombreMaestro;
+    private javax.swing.JSpinner NumPreguntas;
+    private javax.swing.JDialog PreguntaCrear;
+    private javax.swing.JTextField PreguntaTexto;
     private javax.swing.JTextField RRHHMaestro;
+    private javax.swing.JButton RegistrarBoton;
     private javax.swing.JFrame Registro;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton VerCalificaciones;
+    private javax.swing.JButton VerClase;
+    private javax.swing.JCheckBox Verdadero;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -775,10 +1209,11 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
     ArrayList<Usuarios> usuarios= new ArrayList();
     ArrayList<Alumno> alumnos= new ArrayList();
     ArrayList<Maestro> maestros= new ArrayList();
+    ArrayList<Examen> examenes= new ArrayList();
+    ArrayList<Pregunta> preguntas=new ArrayList();
+    ArrayList<Clase> clases=new ArrayList();
 }

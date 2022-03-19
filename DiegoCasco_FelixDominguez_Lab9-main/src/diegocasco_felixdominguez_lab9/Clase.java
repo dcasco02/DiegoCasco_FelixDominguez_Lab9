@@ -19,6 +19,19 @@ public class Clase {
     public Clase() {
     }
 
+    public Clase(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Clase(String nombre, int idmaestro, int idExamenI, int idEXamenII) {
+        this.nombre = nombre;
+        this.idmaestro = idmaestro;
+        this.idExamenI = idExamenI;
+        this.idEXamenII = idEXamenII;
+    }
+    
+    
+
     public Clase(String nombre, int id, int idmaestro, int idExamenI, int idEXamenII) {
         this.nombre = nombre;
         this.id = id;
